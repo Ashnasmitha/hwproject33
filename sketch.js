@@ -19,6 +19,9 @@ function setup() {
 
   ground = new Ground(width/2,height,width,20);
 
+  line=createSprite(400,550,800,5);
+  line.shapeColor="yellow";
+
 
    for (var k = 0; k <=width; k = k + 80) {
      divisions.push(new Divisions(k, height-divisionHeight/2, 10, divisionHeight));
@@ -49,7 +52,7 @@ function setup() {
        plinkos.push(new Plinko(j,375));
     }
 
-    line=new Divisions(400,480,800,5);  
+
 
     
 }
@@ -58,7 +61,8 @@ function setup() {
 function draw() {
   background("black");
 
-
+  rectMode(CENTER);
+  
   textSize(20)
   fill("white");
   text("Score : "+score,20,30);
@@ -66,21 +70,20 @@ function draw() {
 
  
    for (var i = 0; i < plinkos.length; i++) {
-     
+    
      plinkos[i].display();
      
    }
  
-
    for (var k = 0; k < divisions.length; k++) {
+
      fill("white");
      divisions[k].display();
+
    }
 
-   fill("yellow");
-   line.display();
-
    if(particle!=null){
+
      particle.display();
 
     if(particle.body.position.y>760){
@@ -97,8 +100,11 @@ function draw() {
         score=score+200;
         particle=null;
       }
+
      }
    }
+
+
    fill("white");
    for(var a=50;a<=320;a=a+80){
      text("500",a,550,50,50)
@@ -111,15 +117,22 @@ function draw() {
   }
 
    if(particle.isTouching(line)){
+
      count=count+1;
+
    }
+
+
    if(count===5){
+
      gameState="end";
      textSize(30);
      text("GAME OVER",400,400,50,50);
+
    }
 
-   particle.display();
+
+   drawSprites();
 
 }
 
