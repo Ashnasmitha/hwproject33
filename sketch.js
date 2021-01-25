@@ -109,7 +109,7 @@ function draw() {
           gameState="end";
         }
       }
-      else if(particle.body.position.x<560){
+      else if(particle.body.position.x>560 && particle.body.position.x<800){
         score=score+200;
         particle=null;
         if(count>=5){
